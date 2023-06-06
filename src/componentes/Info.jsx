@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 function Info() {
-//   const [count, setCount] = useState(0)
+ const [count, setCount] = useState(0)
 
   return (
     <>

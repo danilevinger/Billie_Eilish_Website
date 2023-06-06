@@ -24,7 +24,7 @@ export default function ButtonAppBar() {
         <Toolbar>
          
        
-         <div style={{width: '500px', display:'flex' ,justifyContent:'start'}}>
+         <div style={{width: '1600px', display:'flex' ,justifyContent:'start'}}>
          <img src={LogoBillie} alt="logo" width={'70px'}/>
          </div>
        

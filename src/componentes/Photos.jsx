@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Carousel from './Carousel'
 function Photos() {
-//   const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0)
 
   return (
     <>
-
-      <h1>Photos</h1>
-      <p className="read-the-docs">
-      Billie Eilish
-      </p>
+      <h1 style={{ marginTop: '60px'}}>Photos</h1>
+      <Carousel/>
     </>
   )
 
