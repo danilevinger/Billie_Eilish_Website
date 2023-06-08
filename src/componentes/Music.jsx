@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
-import MusicCard from './MusicCard'
+import React from 'react';
+import MusicCard from './MusicCard';
+
 function Music() {
-  const [count, setCount] = useState(0)
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  };
+
+  const contentStyle = {
+    textAlign: 'center',
+  };
+
+  const headingStyle = {
+    margin: '0',
+  };
 
   return (
-    <>
-
-      <h1>Music</h1>
-      <p className="read-the-docs">
-      Billie Eilish
-      </p>
-
-    <MusicCard/>
-
-    </>
-  )
-
-  
+    <div style={containerStyle}>
+      <div style={contentStyle}>
+        <h1 style={headingStyle}>Music</h1>
+        <p className="read-the-docs">Billie Eilish</p>
+        <MusicCard />
+      </div>
+    </div>
+  );
 }
 
-export default Music
+export default Music;

@@ -8,6 +8,18 @@ export default function Carousell() {
     maxHeight: '500px', // Ajusta la altura máxima de la imagen según tus necesidades
   };
 
+  const carouselContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  };
+
+  const thumbsContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+  };
+
   const images = [
     { src: './src/assets/billie1.jpeg', alt: 'Slide 1' },
     { src: './src/assets/billie2.jpeg', alt: 'Slide 2' },
@@ -18,12 +30,14 @@ export default function Carousell() {
   ];
 
   return (
-    <Carousel showArrows showThumbs autoPlay>
-      {images.map((image, index) => (
-        <div key={index}>
-          <img src={image.src} alt={image.alt} style={imageStyle} />
-        </div>
-      ))}
-    </Carousel>
+    <div style={carouselContainerStyle}>
+      <Carousel showArrows showThumbs autoPlay thumbContainerStyle={thumbsContainerStyle}>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image.src} alt={image.alt} style={imageStyle} />
+          </div>
+        ))}
+      </Carousel>
+    </div>
   );
 }
