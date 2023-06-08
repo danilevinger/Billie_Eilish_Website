@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
-import Carousel from './Carousel'
+import React from 'react';
+import Carousel from './Carousel';
+
 function Photos() {
-  const [count, setCount] = useState(0)
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  };
+
+  const contentStyle = {
+    textAlign: 'center',
+  };
+
+  const headingStyle = {
+    marginTop: '10px',
+  };
 
   return (
-    <>
-      <h1 style={{ marginTop: '60px'}}>Photos</h1>
-      <Carousel/>
-    </>
-  )
-//hola
-  
+    <div style={containerStyle}>
+      <div style={contentStyle}>
+        <h1 style={headingStyle}>Photos</h1>
+        <Carousel />
+      </div>
+    </div>
+  );
 }
 
-export default Photos
+export default Photos;
