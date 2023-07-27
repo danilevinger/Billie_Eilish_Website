@@ -1,18 +1,43 @@
 import React from 'react';
+import { useTrail, animated } from 'react-spring';
+import { useInView } from 'react-intersection-observer';
 
-const Section = ({ title, content, backgroundColor, h2Transform, pTransform }) => (
-  <section style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', height: '100vh', backgroundColor }}>
-    <h2 style={{ transform: h2Transform }}>{title}</h2>
-    <p style={{ transform: pTransform, width: '700px', textAlign: 'center' }}>{content}</p>
-  </section>
-);
+const Section = ({ title, content, backgroundColor, h2Transform, pTransform, isVisible }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const trail = useTrail(1, {
+    opacity: inView && isVisible ? 1 : 0,
+    transform: inView && isVisible ? 'translateY(0px)' : 'translateY(20px)',
+  });
+
+  return (
+    <animated.section
+      ref={ref}
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundColor,
+        ...trail[0],
+      }}
+    >
+      <h2 style={{ transform: h2Transform, marginBottom: '40px', textAlign: 'left' }}>{title}</h2>
+      <p style={{ transform: pTransform, width: '700px', textAlign: 'justify' }}>{content}</p>
+    </animated.section>
+  );
+};
 
 const AboutSection = () => (
   <Section
     title="Acerca de"
     content="Billie Eilish Pirate Baird O'Connell (Los Ángeles, California; 18 de diciembre de 2001), conocida simplemente como Billie Eilish, es una cantante y compositora estadounidense. Adquirió fama como artista cuando tenía 13 años, a raíz del sencillo «Ocean Eyes» que se publicó en 2015 en SoundCloud y volvió a lanzarse con un vídeo musical en YouTube en 2016, a la edad de 14 años, lo que la convirtió en un fenómeno viral. En 2017, publicó su EP Don't Smile at Me, producido por su hermano Finneas O'Connell."
     backgroundColor="#956c4c"
-    h2Transform="translateX(250px)"
+    isVisible={true} // Coloca el estado de visibilidad de esta sección
+    h2Transform="translateX(240px)"
     pTransform="translateX(500px)"
   />
 );
@@ -22,6 +47,7 @@ const BiographySection = () => (
     title="Biografía"
     content="Nació en Los Ángeles (Estados Unidos) el 18 de diciembre de 2001 y se crio en el barrio de Highland Park, en el seno de una familia de artistas. Sus padres son la actriz Maggie Baird y el músico y guionista Patrick O'Connell. Tiene un hermano mayor, Finneas O'Connell, que también es compositor y actor de reparto. Posee ascendencia irlandesa y escocesa. Durante su infancia recibió educación en el hogar y a los ocho años se unió al Coro Infantil de Los Ángeles, donde aprendió canto y técnica musical. Al mismo tiempo empezó a tocar el piano y el ukelele, y tomó clases de baile con profesores privados. Al cumplir los once años ya componía y cantaba sus propias canciones, siguiendo los pasos de su hermano mayor."
     backgroundColor="#a88963"
+    isVisible={true} // Coloca el estado de visibilidad de esta sección
     h2Transform="translateX(270px)"
     pTransform="translateX(500px)"
   />
@@ -38,13 +64,14 @@ const ArtisticCareerSection = () => (
 
     El 27 de abril de 2021, Eilish anunció a través de Instagram que lanzaría su segundo álbum, titulado 'Happier Than Ever', el 30 de julio. También reveló la portada del álbum y compartió la lista de canciones en Apple Music. \nEl álbum estará disponible en varios formatos, incluyendo vinilos coleccionables y casetes en diferentes colores. El 29 de abril de 2021, se lanzó el tercer sencillo del álbum, llamado 'Your Power', junto con su video musical dirigido por ella misma. \n\nEl 2 de junio, Eilish lanzó 'Lost Cause' como el cuarto sencillo de 'Happier Than Ever'. El 9 de julio, se lanzó 'NDA' como el quinto sencillo del álbum."
     backgroundColor="#8e623e"
+    isVisible={true} // Coloca el estado de visibilidad de esta sección
     h2Transform="translateX(220px)"
     pTransform="translateX(400px)"
   />
 );
 
 const Info = () => (
-  <div style={{ height: '100vh' }}>
+  <div>
     <AboutSection />
     <BiographySection />
     <ArtisticCareerSection />
